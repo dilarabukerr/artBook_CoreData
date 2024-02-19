@@ -28,7 +28,6 @@ class DetailsVC: UIViewController {
     
     @IBAction func saveButton(_ sender: Any) {
         
-        print ("test")
     }
     
 }
