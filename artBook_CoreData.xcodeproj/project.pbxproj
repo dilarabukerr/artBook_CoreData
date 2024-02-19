@@ -14,6 +14,7 @@
 		112DA5D22B83A34B007B4B68 /* artBook_CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 112DA5D02B83A34B007B4B68 /* artBook_CoreData.xcdatamodeld */; };
 		112DA5D42B83A34D007B4B68 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 112DA5D32B83A34D007B4B68 /* Assets.xcassets */; };
 		112DA5D72B83A34D007B4B68 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 112DA5D52B83A34D007B4B68 /* LaunchScreen.storyboard */; };
+		11A251F42B83CC1700C7E30E /* DetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A251F32B83CC1700C7E30E /* DetailsVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		112DA5D32B83A34D007B4B68 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		112DA5D62B83A34D007B4B68 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		112DA5D82B83A34D007B4B68 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		11A251F32B83CC1700C7E30E /* DetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 				112DA5C72B83A34B007B4B68 /* AppDelegate.swift */,
 				112DA5C92B83A34B007B4B68 /* SceneDelegate.swift */,
 				112DA5CB2B83A34B007B4B68 /* ViewController.swift */,
+				11A251F32B83CC1700C7E30E /* DetailsVC.swift */,
 				112DA5CD2B83A34B007B4B68 /* Main.storyboard */,
 				112DA5D32B83A34D007B4B68 /* Assets.xcassets */,
 				112DA5D52B83A34D007B4B68 /* LaunchScreen.storyboard */,
@@ -145,6 +148,7 @@
 				112DA5D22B83A34B007B4B68 /* artBook_CoreData.xcdatamodeld in Sources */,
 				112DA5C82B83A34B007B4B68 /* AppDelegate.swift in Sources */,
 				112DA5CA2B83A34B007B4B68 /* SceneDelegate.swift in Sources */,
+				11A251F42B83CC1700C7E30E /* DetailsVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
