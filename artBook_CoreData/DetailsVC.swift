@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DetailsVC: UIViewController {
+class DetailsVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var nameText: UITextField!
@@ -17,14 +17,45 @@ class DetailsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+    //Recognizer
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         view.addGestureRecognizer(gestureRecognizer) //klavye ve textfield hariç nereye tıklarsan tıkla klavye kapanacak
+    /* 
+     Bu kod bir iOS uygulamasında bir UIImageView nesnesinin kullanıcı etkileşimine izin verilmesini sağlar.
+     isUserInteractionEnabled özelliği, kullanıcı etkileşimlerini (örneğin, dokunma) etkinleştirip devre dışı bırakmanızı sağlar.
+     Bu özelliği true olarak ayarlamak, UIImageView nesnesinin kullanıcı etkileşimlerini algılamasına ve buna yanıt vermesine izin verir.
+     Bu genellikle bir görüntünün tıklanabilir olmasını sağlamak veya üzerine çeşitli etkileşimler eklemek için kullanılır.
+     */
+        imageView.isUserInteractionEnabled = true
+        let imageTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(selectImage))
+        imageView.addGestureRecognizer(imageTapRecognizer)
 
     }
-    
     @objc func hideKeyboard() {
         view.endEditing(true) //keyboard kapatmak için
     }
+    
+    @objc func selectImage() {
+        let picker = UIImagePickerController() //viewcontrollerlar arasında geçiş için.
+        picker.delegate = self
+       /* UIImagePickerController, iOS SDK'daki bir sınıftır ve bir görüntü seçme arayüzü sağlar. 
+        Kullanıcıların cihazlarındaki fotoğraf albümünden veya kamera aracılığıyla yeni bir fotoğraf veya video çekerek bir 
+        medya seçmelerine olanak tanır.Bu sınıf, kullanıcıya belirli izinlerle birlikte kamera ve fotoğraf albümüne erişme yetkisi verir.
+
+        Bu sınıf genellikle uygulamalarda profil resmi seçme, bir fotoğraf galerisi uygulaması oluşturma veya belirli bir işleve
+        dayalı olarak resim seçme gibi durumlar için kullanılır. Kullanıcılar seçtikleri medyayı seçtikten sonra,
+        uygulama bu medya ile ilgili işlemler yapabilir veya kullanıcıya başka bir seçenek sunabilir. */
+        
+        picker.sourceType = .photoLibrary
+        picker.allowsEditing = true //kullanıcı seçtiği görseli editleyebilir.
+        present(picker, animated: true, completion: nil)
+    }
+    //medyayla işimiz bitince bu fonksiyon seçilen görseli döndürüyo
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        imageView.image = info[.originalImage] as? UIImage
+        self.dismiss(animated: true, completion: nil)//açtığımız pickerı kapatmak için.
+    }
+    
     
     @IBAction func saveButton(_ sender: Any) {
         
