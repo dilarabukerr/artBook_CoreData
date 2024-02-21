@@ -23,7 +23,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     //coredata'dan verileri çekmek için fonksiyon oluşturuyoruz
-    func getData() {
+    @objc func getData() {
+        
+        nameArray.removeAll(keepingCapacity: false) //arrayleri temizleyip coredatada bir kere görünüp dizide birden fazla görünmemesini sağlamadık
+        idArray.removeAll(keepingCapacity: false)
         
         let appDelegete =  UIApplication.shared.delegate as! AppDelegate //appDelegate'i değişken olarak tanımlıyoruz (çağırabilmek için)
         let context = appDelegete.persistentContainer.viewContext
@@ -61,6 +64,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         getData()
    
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        NotificationCenter.default.addObserver(self, selector: #selector(getData), name: NSNotification.Name(rawValue: "newData"), object: nil)
     }
     
     @objc func addButtonClicked() {

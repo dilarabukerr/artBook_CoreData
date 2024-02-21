@@ -83,6 +83,10 @@ class DetailsVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         } catch {
             print("Error!")
         }
+        //kayıt olan gözlemciler için mesaj yollamaya yarar
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "newData"), object: nil)
+        self.navigationController?.popViewController(animated: true) // save ettikten sonra bir önceki viewcontrollera geri gitmek için
+        
         
     }
     
