@@ -11,6 +11,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var tableView: UITableView!
     var nameArray = [String]()
     var idArray = [UUID]()
+    var selectedPainting = ""
+    var selectedPaintingID : UUID?
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return nameArray.count
@@ -35,15 +37,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         do {
             let results = try context.fetch(fetchRequest)
-            for result in results as! [NSManagedObject] {
-                if let name = result.value(forKey: "name") as? String {
-                    self.nameArray.append(name)
+            if results.count > 0 {
+                for result in results as! [NSManagedObject] {
+                    if let name = result.value(forKey: "name") as? String {
+                        self.nameArray.append(name)
+                    }
+                    if let id = result.value(forKey: "id") as? UUID {
+                        self.idArray.append(id)
+                    }
+                    
+                    self.tableView.reloadData()//tableviewı güncelliyoruz, yeni gelen datayı görmek için.
                 }
-                if let id = result.value(forKey: "id") as? UUID {
-                    self.idArray.append(id)
-                }
-                
-                self.tableView.reloadData()//tableviewı güncelliyoruz, yeni gelen datayı görmek için.
             }
         } catch {
             print("Error!")
@@ -71,7 +75,25 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     @objc func addButtonClicked() {
+        selectedPainting = ""//eğer artıya tıklandıysa görsel seçilecek
         performSegue(withIdentifier:"toDetailsCV", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        //diğer tarafa aktaracağız.
+        if segue.identifier == "toDetailsCV" {
+            let destinationVC = segue.destination as! DetailsVC
+            destinationVC.chosenPainting = selectedPainting
+            destinationVC.chosenPaintingID = selectedPaintingID //seçilen paintingin hem ismini hem idsini diğer tarafa aktarıyoruz.
+        }
+            
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //bir veriye tıklandığında segue
+        selectedPainting = nameArray [indexPath.row] //eğer isme tıklandıysa görsel verileri gelecek.
+        selectedPaintingID = idArray [indexPath.row]
+        performSegue(withIdentifier: "toDetailsCV", sender: nil)
     }
 }
 
