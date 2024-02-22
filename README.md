@@ -17,3 +17,7 @@ Core Data'nın temel bileşenleri arasında veri modeli (data model), nesneler a
 
 ## table view'ın tüm ekranı kaplaması için
 <img src="https://github.com/dilarabukerr/artBook_CoreData/blob/main/tableview.png" alt="coredata" width="500" height="500">
+
+## Uygulama görünümü
+<img src="https://github.com/dilarabukerr/artBook_CoreData/blob/main/view.gif" alt="coredata" width="300" height="500">
+
